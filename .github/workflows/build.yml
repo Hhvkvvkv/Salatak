@@ -1,0 +1,76 @@
+name: بناء صلاتك
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: تحميل الكود
+      uses: actions/checkout@v4
+
+    - name: إعداد Java 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: تحميل apktool
+      run: |
+        curl -L -o /tmp/apktool.jar \
+          https://github.com/iBotPeaches/Apktool/releases/download/v2.11.0/apktool_2.11.0.jar
+
+    - name: فك تجميع الـ APK
+      run: |
+        java -jar /tmp/apktool.jar d -f صلاتك_4.1.1.apk -o /tmp/apk-output
+
+    - name: إعادة بناء الـ APK
+      run: |
+        java -jar /tmp/apktool.jar b /tmp/apk-output -o /tmp/صلاتك_معدل.apk
+
+    - name: توقيع الـ APK (debug)
+      run: |
+        # إنشاء keystore للتوقيع
+        keytool -genkey -v -keystore /tmp/debug.keystore \
+          -alias debug -keyalg RSA -keysize 2048 -validity 10000 \
+          -storepass android -keypass android \
+          -dname "CN=Debug, OU=, O=, L=, S=, C="
+        
+        # توقيع الـ APK
+        apksigner sign --ks /tmp/debug.keystore \
+          --ks-pass pass:android \
+          --key-pass pass:android \
+          --ks-key-alias debug \
+          /tmp/صلاتك_معدل.apk
+
+    - name: إنشاء Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v4.1.1-build-${{ github.run_number }}
+        name: "صلاتك v4.1.1 (Build ${{ github.run_number }})"
+        body: |
+          ## 🕌 صلاتك - مواقيت الصلاة
+          
+          **الإصدار:** 4.1.1
+          **تاريخ البناء:** $(date +%Y-%m-%d)
+          
+          ### 📱 المميزات:
+          - مواقيت الصلاة بدقة
+          - القبلة
+          - الأذكار
+          - القرآن الكريم
+          - الراديو الإسلامي
+          - المسبحة
+          - الرفقاء
+          
+          ### 📦 ملفات الـ APK:
+          - `صلاتك_معدل.apk` ← التطبيق الموقع جاهز للتثبيت
+        files: |
+          /tmp/صلاتك_معدل.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
