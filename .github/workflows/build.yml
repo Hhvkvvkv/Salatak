@@ -19,6 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: إعداد Android SDK
+      uses: android-actions/setup-android@v3
+
     - name: تحميل apktool
       run: |
         curl -L -o /tmp/apktool.jar \
@@ -40,12 +43,15 @@ jobs:
           -storepass android -keypass android \
           -dname "CN=Debug, OU=, O=, L=, S=, C="
         
-        # توقيع الـ APK
-        apksigner sign --ks /tmp/debug.keystore \
-          --ks-pass pass:android \
-          --key-pass pass:android \
-          --ks-key-alias debug \
-          /tmp/صلاتك_معدل.apk
+        # توقيع الـ APK باستخدام jarsigner (مدمج مع JDK)
+        jarsigner -keystore /tmp/debug.keystore \
+          -storepass android -keypass android \
+          -sigalg SHA1withRSA -digestalg SHA1 \
+          /tmp/صلاتك_معدل.apk debug
+        
+        # تحسين المحاذاة
+        zipalign -f -v 4 /tmp/صلاتك_معدل.apk /tmp/صلاتك_معدل_محاذى.apk 2>/dev/null || \
+        mv /tmp/صلاتك_معدل.apk /tmp/صلاتك_معدل_محاذى.apk
 
     - name: إنشاء Release
       id: create_release
@@ -56,21 +62,20 @@ jobs:
         body: |
           ## 🕌 صلاتك - مواقيت الصلاة
           
-          **الإصدار:** 4.1.1
+          **الإصدار:** 4.1.1  
           **تاريخ البناء:** $(date +%Y-%m-%d)
           
           ### 📱 المميزات:
           - مواقيت الصلاة بدقة
-          - القبلة
-          - الأذكار
+          - اتجاه القبلة
+          - الأذكار والتسبيح
           - القرآن الكريم
           - الراديو الإسلامي
-          - المسبحة
           - الرفقاء
           
-          ### 📦 ملفات الـ APK:
-          - `صلاتك_معدل.apk` ← التطبيق الموقع جاهز للتثبيت
+          ### 📥 التحميل:
+          - `صلاتك_معدل.apk` ← التطبيق جاهز للتثبيت
         files: |
-          /tmp/صلاتك_معدل.apk
+          /tmp/صلاتك_معدل_محاذى.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
