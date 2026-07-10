@@ -37,14 +37,10 @@ jobs:
 
     - name: توقيع الـ APK
       run: |
-        keytool -genkey -v -keystore /tmp/debug.keystore \
-          -alias debug -keyalg RSA -keysize 2048 -validity 10000 \
-          -storepass android -keypass android \
-          -dname "CN=Salatak, OU=App, O=Salatak, L=, S=, C="
-        jarsigner -keystore /tmp/debug.keystore \
-          -storepass android -keypass android \
+        jarsigner -keystore signing/release.keystore \
+          -storepass Salatak123 -keypass Salatak123 \
           -sigalg SHA256withRSA -digestalg SHA-256 \
-          /tmp/app-unsigned.apk debug
+          /tmp/app-unsigned.apk salatak
         mv /tmp/app-unsigned.apk /tmp/Salatak.apk
 
     - name: إنشاء Release
@@ -64,6 +60,9 @@ jobs:
           - الأذكار والتسبيح
           - القرآن الكريم
           - الراديو الإسلامي
+
+          ### ⚠️ ملاحظة التثبيت:
+          احذف التطبيق القديم أولاً ثم ثبّت هذا (مفتاح توقيع مختلف عن الأصلي)
 
           ### 📥 التحميل:
           - `Salatak.apk` ← التطبيق جاهز للتثبيت
