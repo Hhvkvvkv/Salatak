@@ -33,21 +33,19 @@ jobs:
 
     - name: إعادة بناء الـ APK
       run: |
-        java -jar /tmp/apktool.jar b /tmp/apk-output -o /tmp/صلاتك_معدل.apk
+        java -jar /tmp/apktool.jar b /tmp/apk-output -o /tmp/app-unsigned.apk
 
     - name: توقيع الـ APK
       run: |
-        # إنشاء keystore
         keytool -genkey -v -keystore /tmp/debug.keystore \
           -alias debug -keyalg RSA -keysize 2048 -validity 10000 \
           -storepass android -keypass android \
           -dname "CN=Salatak, OU=App, O=Salatak, L=, S=, C="
-
-        # توقيع الـ APK
         jarsigner -keystore /tmp/debug.keystore \
           -storepass android -keypass android \
           -sigalg SHA256withRSA -digestalg SHA-256 \
-          /tmp/صلاتك_معدل.apk debug
+          /tmp/app-unsigned.apk debug
+        mv /tmp/app-unsigned.apk /tmp/Salatak.apk
 
     - name: إنشاء Release
       uses: softprops/action-gh-release@v1
@@ -68,8 +66,8 @@ jobs:
           - الراديو الإسلامي
 
           ### 📥 التحميل:
-          - `صلاتك_معدل.apk` ← التطبيق جاهز للتثبيت
+          - `Salatak.apk` ← التطبيق جاهز للتثبيت
         files: |
-          /tmp/صلاتك_معدل.apk
+          /tmp/Salatak.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
