@@ -5,6 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,9 +22,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: إعداد Android SDK
-      uses: android-actions/setup-android@v3
-
     - name: تحميل apktool
       run: |
         curl -L -o /tmp/apktool.jar \
@@ -35,47 +35,41 @@ jobs:
       run: |
         java -jar /tmp/apktool.jar b /tmp/apk-output -o /tmp/صلاتك_معدل.apk
 
-    - name: توقيع الـ APK (debug)
+    - name: توقيع الـ APK
       run: |
-        # إنشاء keystore للتوقيع
+        # إنشاء keystore
         keytool -genkey -v -keystore /tmp/debug.keystore \
           -alias debug -keyalg RSA -keysize 2048 -validity 10000 \
           -storepass android -keypass android \
-          -dname "CN=Debug, OU=, O=, L=, S=, C="
-        
-        # توقيع الـ APK باستخدام jarsigner (مدمج مع JDK)
+          -dname "CN=Salatak, OU=App, O=Salatak, L=, S=, C="
+
+        # توقيع الـ APK
         jarsigner -keystore /tmp/debug.keystore \
           -storepass android -keypass android \
-          -sigalg SHA1withRSA -digestalg SHA1 \
+          -sigalg SHA256withRSA -digestalg SHA-256 \
           /tmp/صلاتك_معدل.apk debug
-        
-        # تحسين المحاذاة
-        zipalign -f -v 4 /tmp/صلاتك_معدل.apk /tmp/صلاتك_معدل_محاذى.apk 2>/dev/null || \
-        mv /tmp/صلاتك_معدل.apk /tmp/صلاتك_معدل_محاذى.apk
 
     - name: إنشاء Release
-      id: create_release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: v4.1.1-build-${{ github.run_number }}
         name: "صلاتك v4.1.1 (Build ${{ github.run_number }})"
         body: |
           ## 🕌 صلاتك - مواقيت الصلاة
-          
-          **الإصدار:** 4.1.1  
+
+          **الإصدار:** 4.1.1
           **تاريخ البناء:** $(date +%Y-%m-%d)
-          
+
           ### 📱 المميزات:
           - مواقيت الصلاة بدقة
           - اتجاه القبلة
           - الأذكار والتسبيح
           - القرآن الكريم
           - الراديو الإسلامي
-          - الرفقاء
-          
+
           ### 📥 التحميل:
           - `صلاتك_معدل.apk` ← التطبيق جاهز للتثبيت
         files: |
-          /tmp/صلاتك_معدل_محاذى.apk
+          /tmp/صلاتك_معدل.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
