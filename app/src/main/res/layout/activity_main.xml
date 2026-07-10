@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#ff0d1b2a" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="#ff0d1b2a" android:layout_width="fill_parent" android:layout_height="56.0dip" android:layoutDirection="rtl" android:paddingStart="16.0dip" android:paddingEnd="16.0dip" android:elevation="4.0dip">
+        <ImageView android:layout_width="40.0dip" android:layout_height="40.0dip" android:src="@mipmap/ic_launcher" android:layout_marginEnd="12.0dip" />
+        <TextView android:textSize="22.0sp" android:textStyle="bold" android:textColor="#ffe0ad3b" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="صلاتك" android:layout_weight="1.0" />
+        <ImageView android:id="@id/btnSettings" android:background="?selectableItemBackgroundBorderless" android:padding="8.0dip" android:layout_width="40.0dip" android:layout_height="40.0dip" android:src="@drawable/ic_settings" android:contentDescription="الإعدادات" />
+    </LinearLayout>
+    <FrameLayout android:id="@id/fragmentContainer" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:background="#ff0d1b2a" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layoutDirection="rtl">
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/btnTabPrayerTimes" android:background="@drawable/tab_background_selected" android:focusable="true" android:clickable="true" android:layout_width="0.0dip" android:layout_height="64.0dip" android:layout_weight="1.0" android:contentDescription="مواقيت الصلاة، محدد" android:layout_marginEnd="4.0dip">
+            <ImageView android:id="@id/ivTabPrayerIcon" android:layout_width="24.0dip" android:layout_height="24.0dip" android:layout_marginBottom="4.0dip" android:src="@drawable/ic_prayer_times" android:importantForAccessibility="no" />
+            <TextView android:textSize="13.0sp" android:textStyle="bold" android:textColor="#ffffd700" android:id="@id/tvTabPrayerText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="مواقيت الصلاة" android:importantForAccessibility="no" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/btnTabQibla" android:background="@drawable/tab_background" android:focusable="true" android:clickable="true" android:layout_width="0.0dip" android:layout_height="64.0dip" android:layout_weight="1.0" android:contentDescription="القبلة" android:layout_marginStart="4.0dip" android:layout_marginEnd="4.0dip">
+            <ImageView android:id="@id/ivTabQiblaIcon" android:layout_width="24.0dip" android:layout_height="24.0dip" android:layout_marginBottom="4.0dip" android:src="@drawable/ic_qibla" android:importantForAccessibility="no" />
+            <TextView android:textSize="13.0sp" android:textStyle="bold" android:textColor="#ffe0ad3b" android:id="@id/tvTabQiblaText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="القبلة" android:importantForAccessibility="no" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/btnTabUpdates" android:background="@drawable/tab_background" android:focusable="true" android:clickable="true" android:layout_width="0.0dip" android:layout_height="64.0dip" android:layout_weight="1.0" android:contentDescription="الإشعارات" android:layout_marginStart="4.0dip" android:layout_marginEnd="4.0dip">
+            <ImageView android:id="@id/ivTabUpdatesIcon" android:layout_width="24.0dip" android:layout_height="24.0dip" android:layout_marginBottom="4.0dip" android:src="@drawable/ic_updates" android:importantForAccessibility="no" />
+            <TextView android:textSize="13.0sp" android:textStyle="bold" android:textColor="#ffe0ad3b" android:id="@id/tvTabUpdatesText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="الإشعارات" android:importantForAccessibility="no" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/btnTabMore" android:background="@drawable/tab_background" android:focusable="true" android:clickable="true" android:layout_width="0.0dip" android:layout_height="64.0dip" android:layout_weight="1.0" android:contentDescription="المزيد" android:layout_marginStart="4.0dip">
+            <ImageView android:id="@id/ivTabMoreIcon" android:layout_width="24.0dip" android:layout_height="24.0dip" android:layout_marginBottom="4.0dip" android:src="@drawable/ic_more" android:importantForAccessibility="no" />
+            <TextView android:textSize="13.0sp" android:textStyle="bold" android:textColor="#ffe0ad3b" android:id="@id/tvTabMoreText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="المزيد" android:importantForAccessibility="no" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

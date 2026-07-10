@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/widgetAzkarRoot" android:background="@drawable/widget_bg_islamic" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/widget_header_bg" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layoutDirection="rtl">
+        <ImageView android:layout_width="16.0dip" android:layout_height="16.0dip" android:src="@drawable/ic_moon_crescent" android:contentDescription="أذكار" android:layout_marginEnd="6.0dip" />
+        <TextView android:textSize="12.0sp" android:textStyle="bold" android:textColor="#fff5d576" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="أذكار المسلم" android:layout_weight="1.0" />
+        <TextView android:textSize="9.0sp" android:textColor="#80c5a028" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="صلّي على محمد ﷺ" />
+    </LinearLayout>
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="16.0sp" android:textColor="#ffe8c860" android:gravity="center" android:id="@id/tvAzkarWidgetText" android:padding="12.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="سبحان الله وبحمده سبحان الله العظيم" android:lineSpacingExtra="4.0dip" android:fontFamily="sans-serif-medium" />
+    </FrameLayout>
+</LinearLayout>

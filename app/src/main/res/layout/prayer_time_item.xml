@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/prayer_card_touch" android:padding="14.0dip" android:focusable="true" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="6.0dip" android:layoutDirection="rtl"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="18.0sp" android:textStyle="bold" android:textColor="#ffffffff" android:id="@id/tvPrayerName" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="الفجر" android:layout_weight="1.0" android:importantForAccessibility="no" android:fontFamily="@font/droid_arabic_kufi" />
+    <ImageView android:id="@id/ivPrayerIcon" android:layout_width="32.0dip" android:layout_height="32.0dip" android:src="@drawable/ic_moon_crescent" android:importantForAccessibility="no" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" />
+    <TextView android:textSize="18.0sp" android:textStyle="bold" android:textColor="#ffffffff" android:id="@id/tvPrayerTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="٤:٤٨ ص" android:importantForAccessibility="no" android:fontFamily="@font/droid_arabic_kufi" />
+</LinearLayout>

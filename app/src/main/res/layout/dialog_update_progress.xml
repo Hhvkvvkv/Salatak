@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:background="#ff1a2a3a" android:padding="24.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="18.0sp" android:textStyle="bold" android:textColor="#ffe0ad3b" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="16.0dip" android:text="جاري تحميل التحديث..." />
+    <ProgressBar android:id="@id/progressDownload" android:layout_width="fill_parent" android:layout_height="wrap_content" android:max="100" android:progressTint="#ffe0ad3b" android:progressBackgroundTint="#ff333333" style="?android:progressBarStyleHorizontal" />
+    <TextView android:textSize="14.0sp" android:textColor="#ffcccccc" android:gravity="center" android:id="@id/tvProgressPercent" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="0%" />
+</LinearLayout>

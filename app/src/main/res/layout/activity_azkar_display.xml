@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="#80000000" android:focusable="true" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@id/azkarContainer" android:background="@drawable/azkar_popup_bg_islamic" android:padding="20.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="24.0dip" android:layoutDirection="rtl" android:elevation="16.0dip">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="12.0dip">
+            <ImageView android:layout_width="28.0dip" android:layout_height="28.0dip" android:src="@drawable/ic_moon_crescent" android:contentDescription="رمز إسلامي" android:importantForAccessibility="no" />
+            <TextView android:textSize="16.0sp" android:textStyle="bold" android:textColor="#ffc5a028" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="ذكر من أذكار المسلم" android:layout_weight="1.0" android:fontFamily="sans-serif-medium" android:layout_marginStart="10.0dip" />
+            <ImageView android:id="@id/btnCloseAzkar" android:background="?selectableItemBackgroundBorderless" android:padding="4.0dip" android:layout_width="32.0dip" android:layout_height="32.0dip" android:src="@drawable/ic_close" android:tint="#ffc5a028" android:contentDescription="إغلاق الذكر" />
+        </LinearLayout>
+        <View android:background="#3dc5a028" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginBottom="16.0dip" />
+        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="#fff5d576" android:gravity="center" android:id="@id/tvAzkarText" android:paddingTop="12.0dip" android:paddingBottom="12.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="سبحان الله والحمد لله ولا إله إلا الله والله أكبر" android:lineSpacingExtra="8.0dip" android:paddingVertical="12.0dip" />
+        <View android:background="#3dc5a028" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="16.0dip" />
+        <TextView android:textSize="11.0sp" android:textColor="#80c5a028" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="تطبيق صلاتك" />
+    </LinearLayout>
+</FrameLayout>
